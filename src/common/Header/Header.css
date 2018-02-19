@@ -1,0 +1,28 @@
+.header--header {
+  position: fixed;
+  width: 100%;
+  padding: 22px 26px;
+
+  background-color: var(--white);
+  background-image: url('../../img/bg-wave-fade.svg');
+  background-repeat: no-repeat;
+  /* background-size: cover; */
+}
+
+.header--header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.header--header-text {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.header--header-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

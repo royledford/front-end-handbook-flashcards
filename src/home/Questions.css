@@ -1,0 +1,12 @@
+.questions--wrap {
+  height: 100%;
+  padding-top: 192px;
+}
+
+.questions--content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -20px;
+}

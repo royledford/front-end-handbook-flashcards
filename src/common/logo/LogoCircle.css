@@ -1,0 +1,19 @@
+.logocircle--wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+
+  background-color: var(--white);
+
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+.logocircle--logo {
+  width: 25px;
+  height: 25px;
+}

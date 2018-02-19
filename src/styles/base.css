@@ -1,0 +1,503 @@
+/* --------------------- */
+/* Base styles */
+/* --------------------- */
+html {
+  height: 100%;
+  font-style: var(--font-style);
+  font-variant: var(--font-variant);
+  font-weight: var(--font-weight);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  font-family: var(--font-stack);
+}
+
+body {
+  height: 100%;
+  color: var(--font-color);
+  background-color: var(--white);
+  font-family: var(--font-stack);
+}
+
+/* for react root element */
+#root {
+  height: 100%;
+}
+
+p,
+ol,
+ul,
+dl,
+table {
+  margin: 0 0 var(--margin) 0;
+}
+
+/* Remove extra margin for nested lists */
+ul li ul {
+  margin-bottom: 0;
+}
+ol li ol {
+  margin-bottom: 0;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: var(--margin) 0;
+  font-weight: var(--heading-font-weight);
+  font-family: var(--heading-font-family);
+  line-height: var(--heading-line-height);
+  color: var(--heading-font-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5:not(:first-child) {
+  margin: 1.5rem 0;
+}
+
+/* Increased margin on additional headings */
+h1:not(:first-child),
+h2:not(:first-child),
+h3:not(:first-child) {
+  margin-top: 2rem;
+}
+
+/* --------------------- */
+/* Heading individual styles */
+/* --------------------- */
+h1 {
+  font-size: var(--h1-mobile);
+}
+
+h2 {
+  font-size: var(--h2-mobile);
+}
+
+h3 {
+  font-size: var(--h3-mobile);
+}
+
+h4 {
+  font-size: var(--h4-mobile);
+}
+
+h5 {
+  font-size: var(--h5-mobile);
+}
+
+@media screen and (min-width: var(--tablet-up)) {
+  /* Increased margin for additional headings on larger screens */
+  h1:not(:first-child),
+  h2:not(:first-child),
+  h3:not(:first-child) {
+    margin-top: 2.5rem;
+  }
+
+  /* larger headings on desktop */
+  h1 {
+    font-size: var(--h1);
+  }
+  h2 {
+    font-size: var(--h2);
+  }
+  h3 {
+    font-size: var(--h3);
+  }
+  h4 {
+    font-size: var(--h4);
+  }
+  h5 {
+    font-size: var(--h5);
+  }
+}
+
+/* --------------------- */
+/* Link styling */
+/* --------------------- */
+a {
+  color: var(--link-fg);
+  background-color: var(--link-bg);
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--link-fg);
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration: none;
+}
+
+a:active {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+a:focus {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+/* --------------------- */
+/* Highlighted */
+/* --------------------- */
+mark {
+  background: var(--highlight);
+  padding: 0 0.2rem;
+}
+
+/* --------------------- */
+/* Blockquote */
+/* --------------------- */
+blockquote {
+  margin: 0 0 var(--margin) 0;
+  border-left: var(--bq-border);
+  padding: 0 1.5rem;
+  font-size: 1.5rem;
+}
+
+blockquote > cite {
+  display: block;
+  margin-top: var(--margin);
+  font-size: 1rem;
+  text-align: right;
+}
+
+/* --------------------- */
+/* Code block  */
+/* --------------------- */
+pre {
+  border: 0;
+  color: var(--code-color);
+  background-color: var(--code-color-bg);
+  padding: 1rem;
+  margin: 0 0 var(--margin) 0;
+  tab-size: 1;
+  font-family: var(--code-family);
+  font-size: var(--code-size);
+  border-radius: var(--border-radius);
+}
+pre > code {
+  font-family: var(--code-family);
+  line-height: 1.2;
+}
+
+/* --------------------- */
+/* Keyboard input */
+/* --------------------- */
+kbd {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+  color: #333;
+  display: inline-block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 0 0.1em;
+  padding: 0.1em 0.6em;
+  text-shadow: 0 1px 0 #fff;
+}
+
+/* --------------------- */
+/* Inline code styling */
+/* --------------------- */
+:not(pre) > code {
+  color: var(--code-color);
+  background: var(--code-background);
+  font-family: var(--code-family);
+  font-size: var(--code-size);
+  padding: 0 0.2rem;
+  border: var(--code-borders);
+  border-radius: var(--border-radius);
+}
+
+/* --------------------- */
+/* Line break */
+/* --------------------- */
+hr {
+  height: 0;
+  border: 0;
+  border-top: var(--borders);
+}
+
+/* --------------------- */
+/* Definition list */
+/* --------------------- */
+dt {
+  font-weight: 600;
+}
+dd {
+  margin-bottom: 0.5rem;
+}
+
+/* --------------------- */
+/* Tables */
+/* --------------------- */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Extra border underneath header */
+thead th {
+  border-bottom: 2px solid var(--table-border);
+}
+
+/* Extra border above footer */
+tfoot th {
+  border-top: 2px solid var(--table-border-color);
+}
+
+td {
+  border-bottom: 1px solid var(--table-border-color);
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem;
+}
+
+caption {
+  padding: var(--padding) 0;
+  caption-side: bottom;
+  color: var(--table-caption);
+}
+
+.striped-table tbody tr:nth-child(odd) {
+  background-color: var(--table-stripes);
+}
+
+/* --------------------- */
+/* Forms / Controls */
+/* --------------------- */
+
+input[type='color'],
+input[type='date'],
+input[type='datetime-local'],
+input[type='datetime'],
+input[type='email'],
+input[type='month'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='time'],
+input[type='url'],
+input[type='week'],
+select,
+textarea {
+  display: block;
+  border: var(--form-border);
+  border-radius: var(--border-radius);
+  padding: 0.75rem;
+  outline: none;
+  background: var(--input-background);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 100%;
+  line-height: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Input fields on hover */
+input[type='color']:hover,
+input[type='date']:hover,
+input[type='datetime-local']:hover,
+input[type='datetime']:hover,
+input[type='email']:hover,
+input[type='month']:hover,
+input[type='number']:hover,
+input[type='password']:hover,
+input[type='search']:hover,
+input[type='tel']:hover,
+input[type='text']:hover,
+input[type='time']:hover,
+input[type='url']:hover,
+input[type='week']:hover,
+select:hover,
+textarea:hover {
+  border: var(--form-border-hover);
+}
+
+/* Input fields on focus  */
+input[type='color']:focus,
+input[type='date']:focus,
+input[type='datetime-local']:focus,
+input[type='datetime']:focus,
+input[type='email']:focus,
+input[type='month']:focus,
+input[type='number']:focus,
+input[type='password']:focus,
+input[type='search']:focus,
+input[type='tel']:focus,
+input[type='text']:focus,
+input[type='time']:focus,
+input[type='url']:focus,
+input[type='week']:focus,
+select:focus,
+textarea:focus {
+  box-shadow: 0 0 5px var(--color-medium);
+}
+
+textarea {
+  overflow: auto;
+  height: auto;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+fieldset {
+  border: var(--form-border);
+  border-radius: var(--border-radius);
+  padding: var(--padding);
+  margin: var(--margin) 0;
+}
+
+legend {
+  padding: 0 0.5rem;
+  font-weight: 600;
+}
+
+/* Fix issues with select */
+select {
+  color: var(--font-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAJCAYAAAA/33wPAAAAvklEQVQoFY2QMQqEMBBFv7ERa/EMXkGw11K8QbDXzuN4BHv7QO6ifUgj7v4UAdlVM8Uwf+b9YZJISnlqrfEUZVlinucnBGKaJgghbiHOyLyFKIoCbdvecpyReYvo/Ma2bajrGtbaC58kCdZ1RZ7nl/4/4d5EsO/7nzl7IUtodBexMMagaRrs+06jlmvcnwmaov2w/C/TMAyD58dxROgSmvxFFMdxoOs6lliWBXEcuzokXRbRoJRyvqqqQvye+QDMDz1D6yuj9wAAAABJRU5ErkJggg==) */
+  /* right center no-repeat; */
+  line-height: 1;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select {
+  background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position: calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-repeat: no-repeat;
+}
+
+/* select:focus {
+  background-image: linear-gradient(45deg, green 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, green 50%), linear-gradient(to right, #ccc, #ccc);
+  background-position: calc(100% - 15px) 1em, calc(100% - 20px) 1em, calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-repeat: no-repeat;
+  border-color: green;
+  outline: 0;
+} */
+
+[type='range'] {
+  width: 100%;
+}
+
+label {
+  font-weight: 600;
+  max-width: 100%;
+  display: block;
+  margin: 1rem 0 0.5rem;
+}
+
+@media screen and (min-width: var(--tablet-up)) {
+  label {
+    text-align: right;
+    padding: 0 0.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+input::placeholder {
+  color: var(--color-light);
+}
+
+/* --------------------- */
+/* Buttons */
+/* --------------------- */
+
+.button,
+a.button,
+button,
+[type='submit'],
+[type='reset'],
+[type='button'] {
+  display: inline-block;
+  /* border: var(--button-border-width) var(button-border-style)
+    var(--button-border-color); */
+  border-radius: var(--button-border-radius);
+  background: var(--button-background);
+  color: var(--button-color);
+  font-weight: var(--button-font-weight);
+  font-family: var(--button-font-family);
+  font-size: var(--button-font-size);
+  text-transform: var(--button-text-transform);
+  padding: 0.75rem 1.25rem;
+  margin: 0 0 0.5rem 0;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.button:hover,
+a.button:hover,
+button:hover,
+[type='submit']:hover,
+[type='reset']:hover,
+[type='button']:hover {
+  /* border: var(--button-border-width) var(button-border-style)
+    var(--button-border-color); */
+  background: var(--button-background-hover);
+  color: var(--button-color);
+  text-decoration: none;
+}
+
+.button:focus,
+a.button:focus,
+button:focus,
+[type='submit']:focus,
+[type='reset']:focus,
+[type='button']:focus {
+  /* border: var(--button-border-width) var(button-border-style)
+    var(--button-border-color); */
+  background: var(--button-background-hover);
+  color: var(--button-color);
+  text-decoration: none;
+  outline: none;
+}
+
+.button:active,
+a.button:active,
+button:active,
+[type='submit']:active,
+[type='reset']:active,
+[type='button']:active {
+  /* border: var(--button-border-width) var(button-border-style)
+    var(--button-border-color); */
+  background: var(--button-background-hover);
+  color: var(--button-color);
+  text-decoration: none;
+  transform: scale(1.05);
+}
+
+button:disabled {
+  color: var(--accent-color);
+  background-color: var(--color-darker);
+}

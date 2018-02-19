@@ -1,0 +1,7 @@
+.cardcontent--wrap {
+  /* height: 380px; */
+
+  padding: 0 20px;
+  overflow: hidden;
+  overflow-y: scroll;
+}

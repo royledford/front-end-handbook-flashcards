@@ -1,0 +1,20 @@
+.about--wrap {
+  text-align: center;
+  padding: 0;
+  padding-top: 192px;
+
+  width: 254px;
+  margin: 0 auto;
+}
+
+.about--leadin {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 40px;
+}
+
+.about--text {
+  font-size: 12px;
+  font-weight: 300;
+  margin-bottom: 60px;
+}
