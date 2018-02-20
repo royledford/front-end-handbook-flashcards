@@ -1,4 +1,5 @@
 import Axios from 'axios'
+import { GITHUB_URL } from '../settings'
 
 /**
  * Get the README.md from github and convert into
@@ -35,8 +36,7 @@ async function getQuestions() {
  * Get the github README.md
  */
 async function fetchGithubQuestions() {
-  const repoUrl =
-    'https://api.github.com/repos/royledford/front-end-interview-handbook/readme'
+  const repoUrl = GITHUB_URL
 
   try {
     const file = await Axios.get(repoUrl)

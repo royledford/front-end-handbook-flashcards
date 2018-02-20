@@ -8,13 +8,14 @@ export default class Questions extends Component {
     question: PropTypes.string.isRequired,
     answer: PropTypes.string.isRequired,
     showAnswer: PropTypes.bool.isRequired,
+    onClick: PropTypes.func.isRequired,
   }
 
   render() {
-    const { question, answer, showAnswer } = this.props
+    const { onClick, question, answer, showAnswer } = this.props
 
     return (
-      <div className="questions--wrap">
+      <div className="questions--wrap" onClick={onClick}>
         <div className="questions--content">
           <FlipCard
             frontText={question}

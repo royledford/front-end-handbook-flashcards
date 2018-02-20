@@ -21,6 +21,10 @@
   backface-visibility: hidden;
 }
 
+.flipcard--card-front {
+  overflow: hidden;
+}
+
 .flipcard--card-back {
   transform: rotateY(180deg);
 }

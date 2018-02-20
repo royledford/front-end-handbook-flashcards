@@ -5,11 +5,11 @@
   /* Color */
   /* --------------------- */
   --brandcolor: #fad7ac;
-  --color-light: rgb(241, 241, 241);
-  --color-medium: #7873d6;
-  --color-base: rgb(107, 94, 27);
-  --color-dark: rgb(59, 87, 69);
-  --color-darker: rgb(39, 58, 45);
+  --color-light: #f1f1f1;
+  --color-medium: #d6b892;
+  --color-base: #b9976e;
+  --color-dark: #a57943;
+  --color-darker: #7c5423;
   --primary-color: var(--brandcolor);
   --secondary-color: var(--color-light);
   --accent-color: rgb(80, 119, 93);
@@ -54,7 +54,7 @@
 
   /* Body */
   --font-stack: 'Open Sans', sans-serif;
-  --font-size: 1rem;
+  --font-size: 0.85rem;
   --body-font-size: 1rem;
 
   --font-style: normal;
@@ -65,16 +65,16 @@
 
   /* Headings */
   --heading-font-color: var(--color-black);
-  --heading-font-weight: 600;
+  --heading-font-weight: 400;
   --heading-font-family: var(--font-stack);
-  --heading-line-height: 1.2;
+  --heading-line-height: 1.4;
 
   /* Mobile heading font size */
   --h1-mobile: 1.75rem;
   --h2-mobile: 1.5rem;
   --h3-mobile: 1.25rem;
-  --h4-mobile: 1.1rem;
-  --h5-mobile: 1rem;
+  --h4-mobile: 1rem;
+  --h5-mobile: 0.85rem;
 
   /* Heading font size */
   --h1: 2.25rem;
@@ -92,9 +92,9 @@
   --content-padding-mobile: 30px 0;
 
   /* Links */
-  --link-fg: var(--brandcolor);
+  --link-fg: var(--color-dark);
   --link-bg: var(--color-background);
-  --link-hover: var(--white);
+  --link-hover: var(--color-base);
 
   /* --------------------- */
   /* Borders */

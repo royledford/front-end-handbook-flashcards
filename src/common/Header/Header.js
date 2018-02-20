@@ -6,14 +6,24 @@ import './Header.css'
 
 export default class Header extends Component {
   static propTypes = {
+    showNav: PropTypes.bool,
     onFlipClick: PropTypes.func.isRequired,
     onNextClick: PropTypes.func.isRequired,
     onLogoClick: PropTypes.func.isRequired,
     onTitleClick: PropTypes.func.isRequired,
   }
+  static defaultProps = {
+    showNav: true,
+  }
 
   render() {
-    const { onFlipClick, onNextClick, onLogoClick, onTitleClick } = this.props
+    const {
+      showNav,
+      onFlipClick,
+      onNextClick,
+      onLogoClick,
+      onTitleClick,
+    } = this.props
 
     return (
       <header className="header--header">
@@ -23,10 +33,12 @@ export default class Header extends Component {
             Front End Interview Handbook
           </span>
         </div>
-        <div className="header--header-buttons">
-          <Button type="flip" onClick={onFlipClick} />
-          <Button type="next" onClick={onNextClick} />
-        </div>
+        {showNav && (
+          <div className="header--header-buttons">
+            <Button type="flip" onClick={onFlipClick} />
+            <Button type="next" onClick={onNextClick} />
+          </div>
+        )}
       </header>
     )
   }

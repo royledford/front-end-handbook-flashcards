@@ -74,6 +74,7 @@ export default class HomeContainer extends Component {
     return (
       <React.Fragment>
         <Header
+          showNav={!showAbout}
           onFlipClick={this.handleFlipClick}
           onNextClick={this.handleNextClick}
           onLogoClick={this.handleLogoClick}
@@ -86,6 +87,7 @@ export default class HomeContainer extends Component {
             question={currentQuestion}
             answer={currentAnswer}
             showAnswer={showAnswer}
+            onClick={this.handleFlipClick}
           />
         )}
       </React.Fragment>

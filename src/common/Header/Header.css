@@ -6,6 +6,8 @@
   background-color: var(--white);
   background-image: url('../../img/bg-wave-fade.svg');
   background-repeat: no-repeat;
+
+  z-index: 2;
   /* background-size: cover; */
 }
 

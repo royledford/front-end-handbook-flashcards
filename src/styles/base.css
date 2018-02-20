@@ -29,6 +29,7 @@ ul,
 dl,
 table {
   margin: 0 0 var(--margin) 0;
+  list-style-position: inside;
 }
 
 /* Remove extra margin for nested lists */
@@ -37,6 +38,10 @@ ul li ul {
 }
 ol li ol {
   margin-bottom: 0;
+}
+
+li {
+  /* margin-bottom: 1.5rem; */
 }
 
 /* Headings */
@@ -123,6 +128,7 @@ a {
   color: var(--link-fg);
   background-color: var(--link-bg);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 a:visited {
@@ -182,6 +188,7 @@ pre {
   font-family: var(--code-family);
   font-size: var(--code-size);
   border-radius: var(--border-radius);
+  overflow-x: scroll;
 }
 pre > code {
   font-family: var(--code-family);
@@ -246,6 +253,11 @@ table {
   border-spacing: 0;
   width: 100%;
   max-width: 100%;
+
+  /* Added below to allow tables to scroll horizontally on mobile */
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 /* Extra border underneath header */
