@@ -14,14 +14,37 @@ export default class HomeContainer extends Component {
       currentQuestion: '',
       currentAnswer: '',
     }
+    this.getNextQuestion = this.getNextQuestion.bind(this)
   }
 
-  componentDidMount() {
-    getQuestions()
+  async componentDidMount() {
+    const questions = await getQuestions()
+    questions[0].shown = true
+
     this.setState({
-      currentQuestion:
-        '# This is Markdown\n\n#### You can edit me!\n\n```some code```',
-      currentAnswer: '# This is the answer\n\n#### You can edit me!',
+      questions,
+      currentQuestion: questions[0].question,
+      currentAnswer: questions[0].answer,
+    })
+  }
+
+  getNextQuestion = () => {
+    let questions = this.state.questions.filter(obj => !obj.shown)
+
+    // if all the questions have been seen, reset and show again.
+    if (!questions) {
+      questions = this.state.questions.map(obj => (obj.shown = true))
+    }
+
+    const nextIndex = Math.floor(Math.random() * (questions.length - 1))
+    const updatedQuestions = [...this.state.questions]
+    updatedQuestions[nextIndex].shown = true
+
+    this.setState({
+      questions: updatedQuestions,
+      currentQuestion: updatedQuestions[nextIndex].question,
+      currentAnswer: updatedQuestions[nextIndex].answer,
+      showAnswer: false,
     })
   }
 
@@ -33,7 +56,9 @@ export default class HomeContainer extends Component {
     this.setState({ showAnswer: !this.state.showAnswer })
   }
 
-  handleNextClick = () => {}
+  handleNextClick = () => {
+    this.getNextQuestion()
+  }
 
   handleLogoClick = () => {
     console.log('home')

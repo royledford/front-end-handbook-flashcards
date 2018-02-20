@@ -25,7 +25,7 @@ export default class Header extends Component {
         </div>
         <div className="header--header-buttons">
           <Button type="flip" onClick={onFlipClick} />
-          <Button type="next" />
+          <Button type="next" onClick={onNextClick} />
         </div>
       </header>
     )
