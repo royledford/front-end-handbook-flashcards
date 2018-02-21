@@ -74,14 +74,17 @@ function stripNonQuestions(questionsRaw) {
  * Turn the array of raw question/answer text into an array of objects
  */
 function rawQuestionsToArray(rawQuestions) {
+  let index = 0
   const questionArray = rawQuestions.reduce((questions, line, i) => {
     if (isQuestion(line)) {
       const topic = {
         question: line,
         answer: '',
         shown: false,
+        _id: index,
       }
       questions.push(topic)
+      index += 1
       return questions
     }
 

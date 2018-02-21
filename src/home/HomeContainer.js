@@ -16,6 +16,7 @@ export default class HomeContainer extends Component {
       currentCount: 1,
       percentComplete: 0,
     }
+    this.loadNextQuestion = this.loadNextQuestion.bind(this)
     this.getNextQuestion = this.getNextQuestion.bind(this)
   }
 
@@ -30,31 +31,46 @@ export default class HomeContainer extends Component {
     })
   }
 
-  getNextQuestion = () => {
+  loadNextQuestion = () => {
     let questions = this.state.questions.filter(obj => !obj.shown)
-    let currentCount = this.state.currentCount + 1
+    let nextIndex = 0
+    let currentCount = 1
 
-    // if all the questions have been seen, reset and show again.
-    if (!questions) {
-      questions = this.state.questions.map(obj => (obj.shown = true))
-      currentCount = 1
+    if (questions.length > 0) {
+      nextIndex = Math.floor(Math.random() * (questions.length - 1))
+      currentCount = this.state.currentCount + 1
+    } else {
+      // All questions have been seen so start over.
+      questions = [...this.state.questions]
+      questions.forEach(obj => (obj.shown = false))
     }
 
-    const nextIndex = Math.floor(Math.random() * (questions.length - 1))
-    const updatedQuestions = [...this.state.questions]
-    updatedQuestions[nextIndex].shown = true
+    const nextQuestion = questions[nextIndex]
+
+    // Update the main question array to mark a queston as shown
+    const updatedQuestions = this.state.questions.map(q => {
+      if (q._id === nextQuestion._id) {
+        q.shown = true
+      }
+      return q
+    })
 
     const percentComplete = currentCount / this.state.questions.length * 100
+    console.log(
+      `QuestionsCount: ${questions.length}, currentCount: ${currentCount}`
+    )
 
     this.setState({
       questions: updatedQuestions,
-      currentQuestion: updatedQuestions[nextIndex].question,
-      currentAnswer: updatedQuestions[nextIndex].answer,
+      currentQuestion: nextQuestion.question,
+      currentAnswer: nextQuestion.answer,
       showAnswer: false,
       currentCount,
       percentComplete,
     })
   }
+
+  getNextQuestion() {}
 
   handleAboutClicked = () => {
     this.setState({ showAbout: false })
@@ -65,7 +81,7 @@ export default class HomeContainer extends Component {
   }
 
   handleNextClick = () => {
-    this.getNextQuestion()
+    this.loadNextQuestion()
   }
 
   handleLogoClick = () => {

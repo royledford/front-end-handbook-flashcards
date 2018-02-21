@@ -42,7 +42,7 @@ class ProgressBar extends React.Component {
         style={{
           border: 'solid 1px lightgray',
           width: width,
-          // backgroundColor: 'blue',
+          backgroundColor: '#d6b892',
           height,
         }}
         ref={div => {
