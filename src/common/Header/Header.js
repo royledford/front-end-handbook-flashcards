@@ -28,7 +28,9 @@ export default class Header extends Component {
 
     return (
       <header className="header--header">
-        <ProgressBar width="100%" percent={percentComplete} height={2} />
+        {showNav && (
+          <ProgressBar width="100%" percent={percentComplete} height={4} />
+        )}
         <div className="header--header-row">
           <LogoCircle onClick={onLogoClick} />
           <span className="header--header-text">
@@ -37,8 +39,16 @@ export default class Header extends Component {
         </div>
         {showNav && (
           <div className="header--header-buttons">
-            <Button type="flip" onClick={onFlipClick} />
-            <Button type="next" onClick={onNextClick} />
+            <Button
+              type="flip"
+              onClick={onFlipClick}
+              style={{ marginLeft: 'auto', marginRight: '20px' }}
+            />
+            <Button
+              type="next"
+              onClick={onNextClick}
+              style={{ marginLeft: '20px', marginRight: 'auto' }}
+            />
           </div>
         )}
       </header>

@@ -8,10 +8,12 @@ export default class Button extends Component {
   static propTypes = {
     type: PropTypes.oneOf(['next', 'flip']),
     onClick: PropTypes.func,
+    style: PropTypes.object,
   }
   static defaultProps = {
     type: 'refresh',
     onClick: () => {},
+    style: {},
   }
 
   render() {
@@ -19,7 +21,10 @@ export default class Button extends Component {
       this.props.type === 'next' ? <FaArrowRight /> : <FaRepeat />
 
     return (
-      <button className="button--wrap" onClick={this.props.onClick}>
+      <button
+        className="button--wrap"
+        style={this.props.style}
+        onClick={this.props.onClick}>
         {buttonIcon}
       </button>
     )

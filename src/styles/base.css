@@ -506,7 +506,7 @@ button:active,
   background: var(--button-background-hover);
   color: var(--button-color);
   text-decoration: none;
-  transform: scale(1.05);
+  transform: scale(0.9);
 }
 
 button:disabled {
