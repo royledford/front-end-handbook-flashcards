@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import LogoCircle from '../logo/LogoCircle'
 import Button from '../Button/Button'
+import ProgressBar from '../ProgressBar/ProgressBar'
 import './Header.css'
 
 export default class Header extends Component {
@@ -10,7 +11,7 @@ export default class Header extends Component {
     onFlipClick: PropTypes.func.isRequired,
     onNextClick: PropTypes.func.isRequired,
     onLogoClick: PropTypes.func.isRequired,
-    onTitleClick: PropTypes.func.isRequired,
+    percentComplete: PropTypes.number.isRequired,
   }
   static defaultProps = {
     showNav: true,
@@ -22,11 +23,12 @@ export default class Header extends Component {
       onFlipClick,
       onNextClick,
       onLogoClick,
-      onTitleClick,
+      percentComplete,
     } = this.props
 
     return (
       <header className="header--header">
+        <ProgressBar width="100%" percent={percentComplete} height={2} />
         <div className="header--header-row">
           <LogoCircle onClick={onLogoClick} />
           <span className="header--header-text">

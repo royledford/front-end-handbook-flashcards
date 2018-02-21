@@ -3,6 +3,7 @@
   height: 100%;
   position: relative;
   perspective: 0;
+  overflow: hidden;
 }
 
 .flipcard--card-group {
@@ -22,7 +23,6 @@
 }
 
 .flipcard--card-front {
-  overflow: hidden;
 }
 
 .flipcard--card-back {
@@ -31,4 +31,8 @@
 
 .flipcard--card-group.flipcard--flipped {
   transform: rotateY(180deg);
+}
+
+.flipcard--container-overflow {
+  overflow: auto;
 }

@@ -13,6 +13,8 @@ export default class HomeContainer extends Component {
       questions: [],
       currentQuestion: '',
       currentAnswer: '',
+      currentCount: 1,
+      percentComplete: 0,
     }
     this.getNextQuestion = this.getNextQuestion.bind(this)
   }
@@ -30,21 +32,27 @@ export default class HomeContainer extends Component {
 
   getNextQuestion = () => {
     let questions = this.state.questions.filter(obj => !obj.shown)
+    let currentCount = this.state.currentCount + 1
 
     // if all the questions have been seen, reset and show again.
     if (!questions) {
       questions = this.state.questions.map(obj => (obj.shown = true))
+      currentCount = 1
     }
 
     const nextIndex = Math.floor(Math.random() * (questions.length - 1))
     const updatedQuestions = [...this.state.questions]
     updatedQuestions[nextIndex].shown = true
 
+    const percentComplete = currentCount / this.state.questions.length * 100
+
     this.setState({
       questions: updatedQuestions,
       currentQuestion: updatedQuestions[nextIndex].question,
       currentAnswer: updatedQuestions[nextIndex].answer,
       showAnswer: false,
+      currentCount,
+      percentComplete,
     })
   }
 
@@ -69,7 +77,13 @@ export default class HomeContainer extends Component {
   handleTitleClick = () => {}
 
   render() {
-    const { showAbout, currentQuestion, currentAnswer, showAnswer } = this.state
+    const {
+      showAbout,
+      currentQuestion,
+      currentAnswer,
+      showAnswer,
+      percentComplete,
+    } = this.state
 
     return (
       <React.Fragment>
@@ -79,6 +93,7 @@ export default class HomeContainer extends Component {
           onNextClick={this.handleNextClick}
           onLogoClick={this.handleLogoClick}
           onTitleClick={this.handleTitleClick}
+          percentComplete={percentComplete}
         />
         {showAbout ? (
           <About onClick={this.handleAboutClicked} />
