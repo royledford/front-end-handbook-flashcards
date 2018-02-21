@@ -10,11 +10,16 @@
 .about--leadin {
   font-size: 24px;
   font-weight: 800;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .about--text {
   font-size: 12px;
   font-weight: 300;
   margin-bottom: 60px;
+}
+
+.about--text-small {
+  font-size: 10px;
+  margin-top: 40px;
 }

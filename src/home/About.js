@@ -19,6 +19,11 @@ export default class About extends Component {
         <button className="about--button" onClick={this.props.onClick}>
           Get Started
         </button>
+        <p className="about--text-small">
+          Questions from{' '}
+          <a href="https://github.com/yangshun">Yangshun Tay's</a> github repo{' '}
+          <em>front-end-interview-handbook</em>
+        </p>
       </div>
     )
   }
