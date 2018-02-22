@@ -15,6 +15,7 @@ export default class HomeContainer extends Component {
       currentAnswer: '',
       currentCount: 1,
       percentComplete: 0,
+      showTutorial: true,
     }
     this.loadNextQuestion = this.loadNextQuestion.bind(this)
     this.getNextQuestion = this.getNextQuestion.bind(this)
@@ -90,6 +91,10 @@ export default class HomeContainer extends Component {
     this.setState({ showAbout: true })
   }
 
+  handleTutorialClicked = () => {
+    this.setState({ showTutorial: false })
+  }
+
   handleTitleClick = () => {}
 
   render() {
@@ -99,6 +104,7 @@ export default class HomeContainer extends Component {
       currentAnswer,
       showAnswer,
       percentComplete,
+      showTutorial,
     } = this.state
 
     return (
@@ -118,7 +124,9 @@ export default class HomeContainer extends Component {
             question={currentQuestion}
             answer={currentAnswer}
             showAnswer={showAnswer}
+            showTutorial={showTutorial}
             onClick={this.handleFlipClick}
+            onTutorialClick={this.handleTutorialClicked}
           />
         )}
       </React.Fragment>

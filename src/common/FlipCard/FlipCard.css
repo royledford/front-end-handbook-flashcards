@@ -22,9 +22,6 @@
   backface-visibility: hidden;
 }
 
-.flipcard--card-front {
-}
-
 .flipcard--card-back {
   transform: rotateY(180deg);
 }
@@ -35,4 +32,10 @@
 
 .flipcard--container-overflow {
   overflow: auto;
+}
+
+@media screen and (min-width: 600px) {
+  .flipcard--container {
+    width: 700px;
+  }
 }
