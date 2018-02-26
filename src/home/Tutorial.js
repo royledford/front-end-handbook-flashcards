@@ -14,12 +14,12 @@ export default class Tutorial extends Component {
           <Button type="flip" onClick={() => {}} />
           <p className="tutorial--text">
             Click the Flip Icon to see the answer, click again to see the
-            questions.
+            question.
           </p>
 
           <Button type="next" onClick={() => {}} />
           <p className="tutorial--text">
-            Click the Next Icon to go to the next questions.
+            Click the Next Icon to go to the next question.
           </p>
           <button onClick={this.props.onClick}>Let's Go</button>
         </div>
