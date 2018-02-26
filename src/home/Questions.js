@@ -10,13 +10,11 @@ export default class Questions extends Component {
     answer: PropTypes.string.isRequired,
     showAnswer: PropTypes.bool.isRequired,
     showTutorial: PropTypes.bool.isRequired,
-    onClick: PropTypes.func.isRequired,
     onTutorialClick: PropTypes.func.isRequired,
   }
 
   render() {
     const {
-      onClick,
       question,
       answer,
       showAnswer,
@@ -24,13 +22,10 @@ export default class Questions extends Component {
       onTutorialClick,
     } = this.props
 
-    const click = showTutorial ? null : onClick
-    console.log(click)
-
     return (
       <React.Fragment>
         {showTutorial && <Tutorial onClick={onTutorialClick} />}
-        <div className="questions--wrap" onClick={click}>
+        <div className="questions--wrap">
           <div className="questions--content">
             <FlipCard
               frontText={question}

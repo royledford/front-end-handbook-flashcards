@@ -68,9 +68,6 @@ export default class HomeContainer extends Component {
     })
 
     const percentComplete = currentCount / this.state.questions.length * 100
-    console.log(
-      `QuestionsCount: ${questions.length}, currentCount: ${currentCount}`
-    )
 
     this.setState({
       questions: updatedQuestions,
@@ -97,8 +94,6 @@ export default class HomeContainer extends Component {
   }
 
   handleLogoClick = () => {
-    console.log('home')
-
     this.setState({ showAbout: true })
   }
 
@@ -137,7 +132,6 @@ export default class HomeContainer extends Component {
             answer={currentAnswer}
             showAnswer={showAnswer}
             showTutorial={showTutorial}
-            onClick={this.handleFlipClick}
             onTutorialClick={this.handleTutorialClicked}
           />
         )}
