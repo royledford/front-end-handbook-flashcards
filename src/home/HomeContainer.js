@@ -25,10 +25,21 @@ export default class HomeContainer extends Component {
     const questions = await getQuestions()
     questions[0].shown = true
 
+    // get tutorial flag from local storage
+    let showTutorial = localStorage.getItem('showTutorial')
+    if (showTutorial === null) {
+      showTutorial = true
+    } else if (showTutorial === 'false') {
+      showTutorial = false
+    } else {
+      showTutorial = true
+    }
+
     this.setState({
       questions,
       currentQuestion: questions[0].question,
       currentAnswer: questions[0].answer,
+      showTutorial: showTutorial,
     })
   }
 
@@ -92,6 +103,7 @@ export default class HomeContainer extends Component {
   }
 
   handleTutorialClicked = () => {
+    localStorage.setItem('showTutorial', 'false')
     this.setState({ showTutorial: false })
   }
 
