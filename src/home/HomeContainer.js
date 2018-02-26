@@ -132,6 +132,7 @@ export default class HomeContainer extends Component {
             answer={currentAnswer}
             showAnswer={showAnswer}
             showTutorial={showTutorial}
+            onClick={this.handleFlipClick}
             onTutorialClick={this.handleTutorialClicked}
           />
         )}

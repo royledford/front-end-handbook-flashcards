@@ -10,7 +10,29 @@ export default class Questions extends Component {
     answer: PropTypes.string.isRequired,
     showAnswer: PropTypes.bool.isRequired,
     showTutorial: PropTypes.bool.isRequired,
+    onClick: PropTypes.func.isRequired,
     onTutorialClick: PropTypes.func.isRequired,
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      windowWidth: false,
+    }
+    this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this)
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleWindowSizeChange)
+    this.handleWindowSizeChange()
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWindowSizeChange)
+  }
+
+  handleWindowSizeChange() {
+    this.setState({ windowWidth: window.innerWidth })
   }
 
   render() {
@@ -19,13 +41,17 @@ export default class Questions extends Component {
       answer,
       showAnswer,
       showTutorial,
+      onClick,
       onTutorialClick,
     } = this.props
+
+    const isMobile = this.state.windowWidth < 600
+    const cardClick = isMobile ? onClick : null
 
     return (
       <React.Fragment>
         {showTutorial && <Tutorial onClick={onTutorialClick} />}
-        <div className="questions--wrap">
+        <div className="questions--wrap" onClick={cardClick}>
           <div className="questions--content">
             <FlipCard
               frontText={question}
