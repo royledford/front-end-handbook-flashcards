@@ -8,10 +8,20 @@ export default class CardContent extends Component {
     text: PropTypes.string.isRequired,
   }
   render() {
+    const markdownOptions = {
+      overrides: {
+        a: {
+          props: {
+            target: '_blank',
+          },
+        },
+      },
+    }
+
     return (
       <div className="cardcontent--wrap">
         <div className="cardcontent--content">
-          <Markdown>{this.props.text}</Markdown>
+          <Markdown options={markdownOptions}>{this.props.text}</Markdown>
         </div>
       </div>
     )
