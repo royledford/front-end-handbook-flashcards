@@ -12,20 +12,18 @@ export default class HomeContainer extends Component {
       showAnswer: false,
       questions: [],
       currentQuestion: '',
-      currentAnswer: '',
       currentCount: 1,
       percentComplete: 0,
       showTutorial: true,
+      previousQuestions: [],
     }
-    this.loadNextQuestion = this.loadNextQuestion.bind(this)
-    this.getNextQuestion = this.getNextQuestion.bind(this)
+    this.updateShownQuestions = this.updateShownQuestions.bind(this)
   }
 
   async componentDidMount() {
     const questions = await getQuestions()
     questions[0].shown = true
 
-    // get tutorial flag from local storage
     let showTutorial = localStorage.getItem('showTutorial')
     if (showTutorial === null) {
       showTutorial = true
@@ -37,52 +35,107 @@ export default class HomeContainer extends Component {
 
     this.setState({
       questions,
-      currentQuestion: questions[0].question,
-      currentAnswer: questions[0].answer,
+      currentQuestion: questions[0],
       showTutorial: showTutorial,
     })
   }
 
-  loadNextQuestion = () => {
-    let questions = this.state.questions.filter(obj => !obj.shown)
-    let nextIndex = 0
-    let currentCount = 1
+  showNextQuestion = () => {
+    this.updatePreviousQuestions(this.state.currentQuestion)
 
-    if (questions.length > 0) {
-      nextIndex = Math.floor(Math.random() * (questions.length - 1))
-      currentCount = this.state.currentCount + 1
-    } else {
-      // All questions have been seen so start over.
-      questions = [...this.state.questions]
-      questions.forEach(obj => (obj.shown = false))
-    }
-
-    const nextQuestion = questions[nextIndex]
+    const questions = this.getUnshownQuestions()
+    const question = this.getNextQuestion(questions)
 
     // Update the main question array to mark a queston as shown
-    const updatedQuestions = this.state.questions.map(q => {
-      if (q._id === nextQuestion._id) {
-        q.shown = true
-      }
-      return q
-    })
 
+    this.updateShownQuestions(question)
+    this.updateQuestionCount(this.state.previousQuestions.length + 1)
+
+    this.setState({
+      currentQuestion: question,
+      showAnswer: false,
+    })
+  }
+
+  showPreviousQuestion = () => {
+    let lastQuestionId = this.state.currentQuestion._id
+    if (this.state.previousQuestions.length > 0) {
+      lastQuestionId = this.state.previousQuestions[
+        this.state.previousQuestions.length - 1
+      ]
+    }
+
+    // don't be confused, the ._id is the same as the index for the array
+    const question = this.state.questions[lastQuestionId]
+
+    const previousQuestions = [...this.state.previousQuestions]
+    previousQuestions.pop()
+
+    this.updateQuestionCount(previousQuestions.length)
+
+    this.setState({
+      currentQuestion: question,
+      previousQuestions,
+      showAnswer: false,
+    })
+  }
+
+  getUnshownQuestions = () => {
+    let unshownQuestions = this.state.questions.filter(obj => !obj.shown)
+
+    if (unshownQuestions.length === 0) {
+      unshownQuestions = [...this.state.questions]
+      unshownQuestions.forEach(obj => (obj.shown = false))
+    }
+
+    return unshownQuestions
+  }
+
+  getNextQuestion(questions) {
+    const nextIndex = Math.floor(Math.random() * (questions.length - 1))
+    return questions[nextIndex]
+  }
+
+  updatePreviousQuestions(currentQuestion) {
+    let previousQuestions = []
+    if (this.state.previousQuestions.length < this.state.questions.length) {
+      previousQuestions = [...this.state.previousQuestions]
+    }
+
+    previousQuestions.push(currentQuestion._id)
+    this.setState({
+      previousQuestions,
+    })
+  }
+
+  updateQuestionCount(currentCount) {
     const percentComplete = currentCount / this.state.questions.length * 100
 
     this.setState({
-      questions: updatedQuestions,
-      currentQuestion: nextQuestion.question,
-      currentAnswer: nextQuestion.answer,
-      showAnswer: false,
       currentCount,
       percentComplete,
     })
   }
 
-  getNextQuestion() {}
+  updateShownQuestions(question) {
+    const updatedQuestions = this.state.questions.map(q => {
+      if (q._id === question._id) {
+        q.shown = true
+      }
+      return q
+    })
+
+    this.setState({
+      questions: updatedQuestions,
+    })
+  }
 
   handleAboutClicked = () => {
     this.setState({ showAbout: false })
+  }
+
+  handleBackClick = () => {
+    this.showPreviousQuestion()
   }
 
   handleFlipClick = () => {
@@ -90,7 +143,7 @@ export default class HomeContainer extends Component {
   }
 
   handleNextClick = () => {
-    this.loadNextQuestion()
+    this.showNextQuestion()
   }
 
   handleLogoClick = () => {
@@ -102,13 +155,10 @@ export default class HomeContainer extends Component {
     this.setState({ showTutorial: false })
   }
 
-  handleTitleClick = () => {}
-
   render() {
     const {
       showAbout,
       currentQuestion,
-      currentAnswer,
       showAnswer,
       percentComplete,
       showTutorial,
@@ -118,6 +168,7 @@ export default class HomeContainer extends Component {
       <React.Fragment>
         <Header
           showNav={!showAbout}
+          onBackClick={this.handleBackClick}
           onFlipClick={this.handleFlipClick}
           onNextClick={this.handleNextClick}
           onLogoClick={this.handleLogoClick}
@@ -128,8 +179,8 @@ export default class HomeContainer extends Component {
           <About onClick={this.handleAboutClicked} />
         ) : (
           <Questions
-            question={currentQuestion}
-            answer={currentAnswer}
+            question={currentQuestion.question}
+            answer={currentQuestion.answer}
             showAnswer={showAnswer}
             showTutorial={showTutorial}
             onClick={this.handleFlipClick}

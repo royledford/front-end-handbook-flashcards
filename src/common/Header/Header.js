@@ -8,6 +8,7 @@ import './Header.css'
 export default class Header extends Component {
   static propTypes = {
     showNav: PropTypes.bool,
+    onBackClick: PropTypes.func.isRequired,
     onFlipClick: PropTypes.func.isRequired,
     onNextClick: PropTypes.func.isRequired,
     onLogoClick: PropTypes.func.isRequired,
@@ -20,6 +21,7 @@ export default class Header extends Component {
   render() {
     const {
       showNav,
+      onBackClick,
       onFlipClick,
       onNextClick,
       onLogoClick,
@@ -40,9 +42,14 @@ export default class Header extends Component {
         {showNav && (
           <div className="header--header-buttons">
             <Button
+              type="back"
+              onClick={onBackClick}
+              style={{ marginLeft: 'auto', marginRight: '20px' }}
+            />
+            <Button
               type="flip"
               onClick={onFlipClick}
-              style={{ marginLeft: 'auto', marginRight: '20px' }}
+              style={{ marginLeft: '20px', marginRight: '20px' }}
             />
             <Button
               type="next"
